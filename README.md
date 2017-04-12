@@ -15,3 +15,5 @@ The goal is to create a fully automated dashboard generator, based upon Azure In
 
 -----
 **NOTE** : For now only the Web Apps part is working.
+
+**NOTE** : The .json files found here are being used as templates for the json file generation. I need to come up with a better / more dynamic way.
