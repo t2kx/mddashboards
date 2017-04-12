@@ -12,3 +12,6 @@ The goal is to create a fully automated dashboard generator, based upon Azure In
 * Billing and Cost
 * Security
 * a combo of the above 
+
+
+** NOTE : For now only the Web Apps part is working.
