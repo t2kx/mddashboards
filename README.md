@@ -14,4 +14,4 @@ The goal is to create a fully automated dashboard generator, based upon Azure In
 * a combo of the above 
 
 
-** NOTE : For now only the Web Apps part is working.
+**NOTE : For now only the Web Apps part is working.
