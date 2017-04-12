@@ -19,7 +19,7 @@
     The text you want as a subtitle for the Markdown part
 .EXAMPLE
     PS C:\> Add-AzureRMDashboardStarterWebAppMD "West Europe"
-    generates a default dashboard with all the parts mentioned and with the generic title and substitle for the MD part. 
+    Generates a default dashboard with all the parts mentioned and with the generic title and substitle for the MD part. 
 #>
 
 function Add-AzureRMDashboardStarterWebAppMD {
