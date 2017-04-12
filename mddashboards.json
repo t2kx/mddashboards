@@ -1,0 +1,119 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "dashboardName": {
+            "type": "string",
+            "defaultValue": "Site Overview for subscription",
+            "metadata": {
+                "description": "This is the dashboard title for the dashboard you'd like to create"
+            }
+        },
+        "dashboardresourceName": {
+            "type": "string",
+            "defaultValue": "mddashboard",
+            "metadata": {
+                "description": "This is the name of the dashboard you want to create"
+            }
+        },
+        "mdpartcontent": {
+            "type": "string",
+            "defaultValue": "your markdown goes here. New to MD? Read the syntax here: http://daringfireball.net/projects/markdown/syntax  ",
+            "metadata": {
+                "description": "This is the markdown content you want to populate"
+            }
+        },
+        "mdparttitle": {
+            "type": "string",
+            "defaultValue": "Site Overview",
+            "metadata": {
+                "description": "your markdown part title"
+            }
+        },
+        "mdpartsubtitle": {
+            "type": "string",
+            "defaultValue": "Web Apps, Kudu Consoles and App Service Editors",
+            "metadata": {
+                "description": "your markdown part subtitle"
+            }
+        },
+    },
+    "variables": {},
+    "resources": [
+        {
+            "name": "[parameters('dashboardresourceName')]",
+            "type": "Microsoft.Portal/dashboards",
+            "location": "westeurope",
+            "apiVersion": "2015-08-01-preview",
+            "tags": {
+                "hidden-title": "[parameters('dashboardName')]"
+            },
+            "properties": {
+                "lenses": {
+                    "0": {
+                        "order": 0,
+                        "parts": {
+                            "0": {
+                                "position": {
+                                    "x": 2,
+                                    "y": 0,
+                                    "rowSpan": 8,
+                                    "colSpan": 8
+                                },
+                                "metadata": {
+                                    "inputs": [],
+                                    "type": "Extension/HubsExtension/PartType/MarkdownPart",
+                                    "settings": {
+                                        "content": {
+                                            "settings": {
+                                                "content": "[parameters('mdpartcontent')]",
+                                                "title": "[parameters('mdparttitle')]",
+                                                "subtitle": "[parameters('mdpartsubtitle')]"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "1": {
+                                "position": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "rowSpan": 2,
+                                    "colSpan": 2
+                                },
+                                "metadata": {
+                                    "inputs": [],
+                                    "type": "Extension/HubsExtension/PartType/ClockPart",
+                                    "settings": {
+                                        "content": {
+                                            "settings": {
+                                                "location": "Samoa",
+                                                "timeFormat": "HH:mm",
+                                                "version": 1
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            <"XXX":{}>
+                        }
+                    }
+                },
+                "metadata": {
+                    "model": {
+                        "timeRange": {
+                            "value": {
+                                "relative": {
+                                    "duration": 1,
+                                    "timeUnit": 3
+                                }
+                            },
+                            "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "outputs": {}
+}
