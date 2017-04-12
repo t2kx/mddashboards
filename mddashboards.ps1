@@ -1,4 +1,28 @@
-﻿function Add-AzureRMDashboardStarterWebAppMD {
+﻿<#
+.SYNOPSIS
+    Adds a Web App Dashboard to your Azure "Ibiza" Portal. 
+.DESCRIPTION
+    The Add-AzureRMDashboardStarterWebAppMD creates a new resource group per subscription and generates a dashboard resources which will be visible as a shared source.
+    On this dashboard following parts will be created:
+        * A clock (still in the  default setting)
+        * A Markdown part with an overview of all the available Web Apps per that subscription. This overview is in table form and contains:
+            - the hostname
+            - the website url(s)
+            - the Kudu Link
+            - the Monaco / App Service Editor Link
+    This generation will be ARM based and the json files can be adapted afterwards or redeployed if needed. Also a rerun will regenerate the files and update the dashboard.
+.PARAMETER yourlocation
+    The location where you an tto desploy the resource group.
+.PARAMETER yourmdtitle
+    The text you want as a header or title for the Markdown part
+.PARAMETER yourmdsubtitle
+    The text you want as a subtitle for the Markdown part
+.EXAMPLE
+    PS C:\> Add-AzureRMDashboardStarterWebAppMD "West Europe"
+    generates a default dashboard with all the parts mentioned and with the generic title and substitle for the MD part. 
+#>
+
+function Add-AzureRMDashboardStarterWebAppMD {
     [CmdletBinding()]
     param
     (
