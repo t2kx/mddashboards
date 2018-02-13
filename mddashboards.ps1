@@ -1,4 +1,5 @@
-﻿<#
+﻿
+<#
 .SYNOPSIS
     Adds a Web App Dashboard to your Azure "Ibiza" Portal. 
 .DESCRIPTION
@@ -37,11 +38,12 @@ function Add-AzureRMDashboardStarterWebAppMD {
     Add-AzureRmAccount
     new-item .\mddashsub -ItemType Directory -Force
     $azuresubs = (Get-AzureRmSubscription|Out-GridView -PassThru)
+    
     foreach ($sub in $azuresubs) {
-        Select-AzureRmSubscription -SubscriptionName $sub.SubscriptionName
-        $mdfile = ".\mddashsub\$($sub.SubscriptionName)webapp.md"
-        $yourtitle = $sub.SubscriptionName + " Site Overview for subscription"
-        $yourname = "mddashboardstarter"+ $sub.SubscriptionId
+        Select-AzureRmSubscription -SubscriptionName $sub.Name
+        $mdfile = ".\mddashsub\$($sub.Name)webapp.md"
+        $yourtitle = $sub.Name + " Site Overview for subscription"
+        $yourname = "mddashboardstarter"+ $sub.Id
         $locpartid = 2
         $partsjson = ''      
         $partY = 8
@@ -70,8 +72,8 @@ function Add-AzureRMDashboardStarterWebAppMD {
 
         }        
         $yourmdfile = Get-Content $mdfile
-        $jsonout = ".\mddashsub\$($sub.SubscriptionName)_deploymddashboard.json"
-        $jsonoutparam = ".\mddashsub\$($sub.SubscriptionName)_deploymddashboard.parameters.json"        
+        $jsonout = ".\mddashsub\$($sub.Name)_deploymddashboard.json"
+        $jsonoutparam = ".\mddashsub\$($sub.Name)_deploymddashboard.parameters.json"        
         #Copy-Item .\mddashboards.json $jsonout
         $rsdepjson = Get-Content .\mddashboards.parameters.json
         Write-Verbose 'Following parameters will be written to the .parameters.json file'
@@ -104,9 +106,9 @@ function Add-AzureRMDashboardStarterVMMD {
     new-item .\mddashsub -ItemType Directory -Force
     $azuresubs = (Get-AzureRmSubscription|Out-GridView -PassThru)
     foreach ($sub in $azuresubs) {
-        Select-AzureRmSubscription -SubscriptionName $sub.SubscriptionName
-        $subID = $sub.SubscriptionId
-        $mdfile = ".\mddashsub\$($sub.SubscriptionName)vm.md"
+        Select-AzureRmSubscription -SubscriptionName $sub.Name
+        $subID = $sub.Id
+        $mdfile = ".\mddashsub\$($sub.Name)vm.md"
         $yourtitle = "$($sub.name) Site Overview for subscription"
         $yourname = "mddashboardstarter$($sub.name)"
         $rgs = Get-AzureRmResourceGroup
@@ -138,6 +140,7 @@ function New-AzureRMDashboardStarterWebAppPart {
         [Parameter(Mandatory = $true)]
         [int]$partType
     )
+
     switch ($partType) {
         #microsoft.web/serverfarms - CPU/MEM
         1 {
